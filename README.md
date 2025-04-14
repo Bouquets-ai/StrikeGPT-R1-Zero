@@ -1,2 +1,19 @@
-# StrikeGPT-R1-Zero
-专为红队蒸馏的推理性GPT，所选数据均包含较强的攻击性。目前已知适用场景：断网情况下的网络安全大赛
+---
+base_model:
+- deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B
+tags:
+- text-generation-inference
+- transformers
+- unsloth
+- qwen2
+- gguf
+license: apache-2.0
+language:
+- zh
+---
+<b><font color=Red size=5 ><center>⚠It's still being tested,Only the Chinese dataset was used⚠</font></b></center>
+
+# Distillation data distribution
+![](data.gif)
+![](微信截图_20250409152539.png)
+![](微信截图_20250409152742.png)
