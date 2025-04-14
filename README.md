@@ -3,5 +3,5 @@
 
 # Distillation data distribution
 ![](data.gif)
-![](微信截图_20250409152539.png)
-![](微信截图_20250409152742.png)
+![](%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20250409152539.png)
+![](%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20250409152742.png)
