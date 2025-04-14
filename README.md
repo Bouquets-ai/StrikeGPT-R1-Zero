@@ -1,5 +1,5 @@
 
-<b><font color=Red size=5 ><center>⚠It's still being tested,Only the Chinese dataset was used⚠</font></b></center>
+# ⚠It's still being tested,Only the Chinese dataset was used⚠ 
 
 # Distillation data distribution
 ![](data.gif)
