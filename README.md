@@ -1,7 +1,7 @@
 
 # ⚠仍在测试中，暂且只蒸馏了中文数据集⚠ 
 
-# 🤖 StrikeGPT-R1-Zero: 专注网络安全渗透领域端侧知识蒸馏推理模型  
+# 🤖 StrikeGPT-R1-Zero: 网络安全渗透领域推理模型  
 
 ## 🚀 模型简介  
 **StrikeGPT-R1-Zero** 是基于 **DeepSeek-R1-Distill-Qwen-7B** 的黑盒知识蒸馏模型，涵盖：  
