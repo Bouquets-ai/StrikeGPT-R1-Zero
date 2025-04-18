@@ -1,23 +1,40 @@
 
-# ⚠It's still being tested,Only the Chinese dataset was used⚠ 
+# ⚠仍在测试中，暂且只蒸馏了中文数据集⚠ 
 
-# Distillation data distribution
-![](https://github.com/Bouquets-ai/StrikeGPT-R1-Zero/blob/main/img/data.gif)
-![](https://github.com/Bouquets-ai/StrikeGPT-R1-Zero/blob/main/img/%25E5%25BE%25AE%25E4%25BF%25A1%25E6%2588%25AA%25E5%259B%25BE_20250409152539.png?raw=true)
-![](https://github.com/Bouquets-ai/StrikeGPT-R1-Zero/blob/main/img/%25E5%25BE%25AE%25E4%25BF%25A1%25E6%2588%25AA%25E5%259B%25BE_20250409152742.png?raw=true)
+# 🤖 StrikeGPT-R1-Zero: 专注网络安全渗透领域端侧知识蒸馏推理模型  
 
-# 思考
-1.目前只使用蒸馏模型对Deepseek-R1进行二次蒸馏，其实按照技术流程，这是完全可行的，只不过推理能力相较于GRPO略微逊色一些
+## 🚀 模型简介  
+**StrikeGPT-R1-Zero** 是基于 **DeepSeek-R1-Distill-Qwen-7B** 的黑盒知识蒸馏模型，涵盖：  
+🔒 AI安全 | 🛡️ API安全 | 📱 APP安全 | 🕵️ APT | 🏴 CTF  
+🏭 ICS安全 | 💻 渗透测试ALL | ☁️ 云上安全 | 📜 代码审计  
+🦠 免杀 | 🌐 内网安全 | 💾 电子取证 | ₿ 区块链安全 | 🕳️ 溯源反制 | 🌍 物联网(IoT)安全<br>
+🚨 应急响应 | 🚗 整车安全 | 👥 社会工程学 | 💼 渗透测试面试 
+### 👉 [点击访问可交互式详细数据分布图](https://bouquets-ai.github.io/StrikeGPT-R1-Zero/WEB)  
+### 🌟 模型亮点
+- 🧩采用**思维链(CoT)推理数据**优化模型逻辑能力，显著提升在漏洞分析等复杂任务的表现
+- 💪Base模型采用Distill-Qwen相较于Distill-Llama更适合中国宝宝体制
+- ⚠️**无德限制**在特定领域的学术研究有不一样的表现（请在符合当地法律的情况下使用）
 
-2.尝试过GRPO+SFT因奖励问题难以达到心里预期，感觉在安全领域标准答案定义太模糊了，日志流量分析类和代码审计类有固定答案类目前看来较为适用，纯渗透领域还是太难了。
+## 📊 数据分布  
+![数据分布图](img/data.gif)  
 
-3.尝试过logits蒸馏+KL散度或者交叉熵，目前看来前向KL散度为最优解，也可以试试反向和偏前偏反，苦于博主学校不支援GPU未能使用较好的教师模型，也因博主技术原因造成了欠拟合和梯度爆炸，不过进行加权和控制梯度也能暂时缓解，一来二去模型成傻子了，哎。
+## 🎯 核心能力展示
 
-4.哎，今年要准备别的事希望有好消息，明年准备从零手搓一个专注于渗透的推理安全大模型，从技术来说知识储备问题已经不大了，就差时间和GPU还有超高质量的数据（废话）。再多多想着如何能与MCP结合一下，暂时专注于简单的CTF和安服类脚本小子的替代工作。
+## 📈 实验数据走势图 
 
-5.看见隔壁secgpt发新模型了，给我个好的GPU好想用他们的模型跑GRPO呀，他的模型选用的是qwen2.5-Instruct而不是base模型感觉不太适合通过蒸馏生成思维链，也可以尝试用coder的base模可能在代码审计有更好的效果，经过SFT和RL不太适合白盒蒸馏，我已经进行Q8量化了，大家可以直接通过ollama进行拉取ollama run hf.co/Bouquets/SecGPT-7B-Q8_0-GGUF
+## 📚 开源资料
+### 数据集
 
-简单测了下自我认知，唯一遗憾的是没有突破道德限制
-![image](https://github.com/user-attachments/assets/8a1586c3-da26-4835-815e-fee785f1c4fa)
+### 代码
 
+## 💰 训练成本  
+- **Deepseek-R1 API调用费用**: ¥420 (均在打折时调用，正常调用价格在¥1680)
+- **服务器开销**: ¥1?0
+- **电子资源**: ¥??
+
+## ⚖️ 使用须知 
+> 本模型仅供**合法安全研究**与**教育用途**。使用者需遵守所在地法律法规，开发者不对滥用行为负责。<br>
+> 提示：使用即表示您同意本声明
+
+💡 **提示**: 模型可能存在幻觉或知识盲区，关键场景请交叉验证！  
 
