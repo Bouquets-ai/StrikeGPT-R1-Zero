@@ -4,7 +4,7 @@
 # 🤖 StrikeGPT-R1-Zero: 网络安全渗透领域推理模型 
 
 ## 🚀 模型简介  
-**StrikeGPT-R1-Zero** 是源于 **DeepSeek-R1-Distill-Qwen-7B** 对教师模型Deepseek-R1二次知识蒸馏(DK)的专家模型，涵盖：  
+**StrikeGPT-R1-Zero** 是基于 **DeepSeek-R1-Distill-Qwen-7B** 进行二次知识蒸馏（Distillation of Knowledge, DK）的专家模型，其教师模型为 DeepSeek-R1，涵盖：  
 🔒 AI安全 | 🛡️ API安全 | 📱 APP安全 | 🕵️ APT | 🏴 CTF  
 🏭 ICS安全 | 💻 渗透测试ALL | ☁️ 云上安全 | 📜 代码审计  
 🦠 免杀 | 🌐 内网安全 | 💾 电子取证 | ₿ 区块链安全 | 🕳️ 溯源反制 | 🌍 物联网(IoT)安全<br>
@@ -38,7 +38,7 @@
 ### 代码
 
 ## 💰 训练成本  
-- **Deepseek-R1 API调用费用**: ¥420 (均在打折时调用，正常调用价格在¥1680)
+- **DeepSeek-R1 API调用费用**: ¥420 (均在打折时调用，正常调用价格在¥1680)
 - **服务器开销**: ¥1?0
 - **电子资源**: ¥??
 
