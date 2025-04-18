@@ -1,0 +1,1683 @@
+<!DOCTYPE html>
+<html lang="en" style="height: 100%">
+<head>
+  <meta charset="utf-8">
+</head>
+<body style="height: 100%; margin: 0">
+  <div id="container" style="height: 100%"></div>
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: #f8f9fa; 
+    }
+    
+    canvas {
+      display: block;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+    
+    .dark canvas {
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="particles"></canvas>
+  
+  <script>
+    const canvas = document.getElementById('particles');
+    const ctx = canvas.getContext('2d');
+    
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    
+    const particles = [];
+    const particleCount = window.innerWidth < 600 ? 30 : 80;
+    
+    for (let i = 0; i < particleCount; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        size: Math.random() * 3 + 1,
+        speedX: Math.random() * 1 - 0.5,
+        speedY: Math.random() * 1 - 0.5,
+        color: window.matchMedia('(prefers-color-scheme: dark)').matches 
+          ? 'rgba(255, 255, 255, 0.5)' 
+          : 'rgba(0, 0, 0, 0.5)'
+      });
+    }
+    
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
+        
+        p.x += p.speedX;
+        p.y += p.speedY;
+        
+        if (p.x < 0 || p.x > canvas.width) p.speedX *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.speedY *= -1;
+        
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = p.color;
+        ctx.fill();
+      }
+      
+      requestAnimationFrame(animate);
+    }
+    
+    animate();
+    
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+    
+    const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    darkModeMediaQuery.addListener((e) => {
+      const newColor = e.matches ? 'rgba(255, 255, 255, 0.5)' : 'rgba(0, 0, 0, 0.5)';
+      particles.forEach(p => p.color = newColor);
+    });
+  </script>
+<body style="height: 100%; margin: 0">
+  <div id="container" style="height: 100%"></div>
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+  <script type="text/javascript">
+    var dom = document.getElementById('container');
+    var myChart = echarts.init(dom, null, {
+      renderer: 'canvas',
+      useDirtyRect: false
+    });
+    var app = {};
+    
+    var option;
+
+    var data = [
+  {
+    name: 'AI安全',
+    itemStyle: { color: '#da0d68' },
+    children: [
+      { name: '大模型技术演进', value: 22, itemStyle: { color: '#975e6d' } },
+      { name: '模型的使用与优化', value: 150, itemStyle: { color: '#e0719c' } },
+      { name: 'AI安全攻防', value: 1106, itemStyle: { color: '#f99e1c' } },
+      { name: 'AI红队测试', value: 370, itemStyle: { color: '#ef5a78' } },
+      { name: 'AI应用实践', value: 143, itemStyle: { color: '#f7f1bd' } },
+      { name: '合规与法律', value: 37, itemStyle: { color: '#3e0317' } }
+    ]
+  },
+  {
+    name: 'API安全',
+    itemStyle: { color: '#da1d23' },
+    children: [
+      { name: 'API安全测试', value: 90, itemStyle: { color: '#dd4c51' } },
+      { name: '服务端污染', value: 63, itemStyle: { color: '#e62969' } },
+      { name: 'API协议类型', value: 10, itemStyle: { color: '#6569b0' } },
+      { name: '安全防护', value: 63, itemStyle: { color: '#ef2d36' } },
+      { name: '测试实验', value: 23, itemStyle: { color: '#b53b54' } },
+      { name: '请求响应', value: 3, itemStyle: { color: '#a5446f' } }
+    ]
+  },
+  {
+    name: 'APP安全',
+    itemStyle: { color: '#ebb40f' },
+    children: [
+      {
+        name: 'Android系统',
+        itemStyle: { color: '#e1c315' },
+        children: [
+          { name: '客户端安全', value: 120, itemStyle: { color: '#9ea718' } },
+          { name: '组件安全', value: 93, itemStyle: { color: '#94a76f' } },
+          { name: '数据安全', value: 80, itemStyle: { color: '#d0b24f' } },
+          { name: '策略安全', value: 44, itemStyle: { color: '#8eb646' } },
+          { name: '进程安全', value: 67, itemStyle: { color: '#faef07' } },
+          { name: '通信安全', value: 93, itemStyle: { color: '#c1ba07' } },
+          { name: '安全增强', value: 8, itemStyle: { color: '#8f1c53' } },
+          { name: '工具平台', value: 176, itemStyle: { color: '#b34039' } }
+        ]
+      },
+      {
+        name: 'IOS系统',
+        itemStyle: { color: '#b09733' },
+        children: [
+          { name: '逆向分析技术', value: 233, itemStyle: { color: '#ba9232' } },
+          { name: '应用防护', value: 44, itemStyle: { color: '#8b6439' } },
+          { name: '数据安全', value: 37, itemStyle: { color: '#a2b029' } },
+          { name: '系统安全', value: 52, itemStyle: { color: '#718933' } },
+          { name: '代码保护', value: 40, itemStyle: { color: '#3aa255' } },
+          { name: '实战案例', value: 17, itemStyle: { color: '#a2bb2b' } }
+        ]
+      }
+    ]
+  },
+  {
+    name: 'APT',
+    itemStyle: { color: '#187a2f' },
+    children: [
+      { name: 'APT威胁分析', value: 216, itemStyle: { color: '#62aa3c' } },
+      { name: '攻击技术', value: 649, itemStyle: { color: '#03a653' } },
+      { name: '目标行业', value: 30, itemStyle: { color: '#038549' } },
+      { name: '勒索攻击', value: 67, itemStyle: { color: '#28b44b' } },
+      { name: '互联网黑产', value: 63, itemStyle: { color: '#a3a830' } },
+      { name: '漏洞分析', value: 78, itemStyle: { color: '#7ac141' } },
+      { name: '威胁趋势', value: 29, itemStyle: { color: '#5e9a80' } }
+    ]
+  },
+  {
+    name: 'CTF',
+    itemStyle: { color: '#0aa3b5' },
+    children: [
+      {
+        name: 'WEB安全',
+        itemStyle: { color: '#9db2b7' },
+        children: [
+          { name: 'WEB安全基础', value: 682, itemStyle: { color: '#8b8c90' } },
+          { name: 'SQL注入', value: 393, itemStyle: { color: '#beb276' } },
+          { name: '文件读取', value: 206, itemStyle: { color: '#fefef4' } },
+          { name: 'SSRF漏洞', value: 177, itemStyle: { color: '#744e03' } },
+          { name: '命令执行', value: 287, itemStyle: { color: '#a3a36f' } },
+          { name: 'XSS漏洞', value: 254, itemStyle: { color: '#c9b583' } },
+          { name: '文件上传', value: 168, itemStyle: { color: '#978847' } },
+          { name: '反序列化', value: 198, itemStyle: { color: '#9d977f' } },
+          { name: '环境搭建', value: 71, itemStyle: { color: '#cc7b6a' } },
+          { name: '横向移动', value: 96, itemStyle: { color: '#db646a' } },
+          { name: '凭证获取', value: 88, itemStyle: { color: '#80a89d' } },
+          { name: '其他', value: 636, itemStyle: { color: '#def2fd' } }
+        ]
+      },
+      {
+        name: 'reverse',
+        itemStyle: { color: '#76c0cb' },
+        children: [
+          { name: 'APK逆向', value: 254, itemStyle: { color: '#7a9bae' } },
+          { name: '逆向工具', value: 649, itemStyle: { color: '#039fb8' } },
+          { name: '逆向基础', value: 408, itemStyle: { color: '#5e777b' } },
+          { name: '反调试', value: 282, itemStyle: { color: '#120c0c' } },
+          { name: '脱壳技术', value: 357, itemStyle: { color: '#caa465' } },
+          { name: '符号执行', value: 47, itemStyle: { color: '#dfbd7e' } },
+          { name: '其他', value: 113, itemStyle: { color: '#be8663' } }
+        ]
+      },
+      {
+        name: 'PWN',
+        itemStyle: { color: '#c94930' },
+        children: [
+          { name: 'PWN基础', value: 157, itemStyle: { color: '#b9a449' } },
+          { name: '栈溢出', value: 98, itemStyle: { color: '#899893' } },
+          { name: '堆利用', value: 191, itemStyle: { color: '#a1743b' } },
+          { name: '内核PWN', value: 164, itemStyle: { color: '#894810' } },
+          { name: '格式化字符串', value: 431, itemStyle: { color: '#ddaf61' } },
+          { name: '其他', value: 234, itemStyle: { color: '#b7906f' } }
+        ]
+      },
+      {
+        name: 'Crypto',
+        itemStyle: { color: '#ad213e' },
+        children: [
+          { name: '古典密码', value: 230, itemStyle: { color: '#794752' } },
+          { name: '现代密码', value: 362, itemStyle: { color: '#cc3d41' } },
+          { name: '分组密码', value: 227, itemStyle: { color: '#b14d57' } },
+          { name: '流密码', value: 403, itemStyle: { color: '#c78936' } },
+          { name: '公钥密码', value: 377, itemStyle: { color: '#8c292c' } },
+          { name: 'Hash攻击', value: 154, itemStyle: { color: '#e5762e' } },
+          { name: '国密算法', value: 41, itemStyle: { color: '#a16c5a' } },
+          { name: '其他', value: 58, itemStyle: { color: '#a87b64' } }
+        ]
+      },
+      {
+        name: '智能合约',
+        itemStyle: { color: '#a87b64' },
+        children: [
+          { name: '合约基础', value: 422, itemStyle: { color: '#c78869' } },
+          { name: '以太坊安全', value: 82, itemStyle: { color: '#d4ad12' } },
+          { name: '其他', value: 63, itemStyle: { color: '#9d5433' } }
+        ]
+      },
+      {
+        name: '杂项',
+        itemStyle: { color: '#e65832' },
+        children: [
+          { name: '隐写', value: 61, itemStyle: { color: '#d45a59' } },
+          { name: '流量分析', value: 75, itemStyle: { color: '#310d0f' } },
+          { name: '内存取证', value: 30, itemStyle: { color: '#ae341f' } },
+          { name: '压缩包分析', value: 43, itemStyle: { color: '#d78823' } },
+          { name: '其他', value: 77, itemStyle: { color: '#da5c1f' } }
+        ]
+      },
+      {
+        name: '代码审计',
+        itemStyle: { color: '#e65832' },
+        children: [
+          { name: 'PHP代码审计', value: 264, itemStyle: { color: '#f89a80' } },
+          { name: 'Java代码审计', value: 51, itemStyle: { color: '#f37674' } },
+          { name: '其他', value: 13, itemStyle: { color: '#e75b68' } }
+        ]
+      },
+      {
+        name: 'AWD&AWDP',
+        itemStyle: { color: '#e65832' },
+        children: [
+          { name: 'AWD策略', value: 46, itemStyle: { color: '#d0545f' } },
+          { name: '漏洞修复', value: 35, itemStyle: { color: '#da0d68' } },
+          { name: '权限维持', value: 85, itemStyle: { color: '#975e6d' } },
+          { name: '其他', value: 13, itemStyle: { color: '#e0719c' } },
+          { name: '赛制概述', value: 57, itemStyle: { color: '#f99e1c' } },
+          {
+            name: '自由攻击',
+            itemStyle: { color: '#ef5a78' },
+            children: [
+              { name: '信息收集', value: 12, itemStyle: { color: '#f7f1bd' } },
+              { name: '漏洞利用', value: 11, itemStyle: { color: '#3e0317' } },
+              { name: '后门利用', value: 10, itemStyle: { color: '#e62969' } },
+              { name: '数据库利用', value: 27, itemStyle: { color: '#6569b0' } },
+              { name: '弱口令爆破', value: 76, itemStyle: { color: '#ef2d36' } },
+              { name: '权限维持', value: 13, itemStyle: { color: '#b53b54' } },
+              { name: '文件检索', value: 55, itemStyle: { color: '#a5446f' } },
+              { name: 'Linux提权', value: 33, itemStyle: { color: '#9ea718' } },
+              { name: 'Win提权', value: 42, itemStyle: { color: '#94a76f' } }
+            ]
+          },
+          { name: '比赛环境', value: 43, itemStyle: { color: '#d0b24f' } },
+          {
+            name: '安全加固',
+            itemStyle: { color: '#8eb646' },
+            children: [
+              { name: '系统加固', value: 56, itemStyle: { color: '#faef07' } },
+              { name: '信息搜集', value: 86, itemStyle: { color: '#c1ba07' } },
+              { name: '网站加固', value: 74, itemStyle: { color: '#8f1c53' } },
+              { name: '数据库加固', value: 12, itemStyle: { color: '#b34039' } },
+              { name: '应急响应', value: 10, itemStyle: { color: '#ba9232' } },
+              { name: '远程加固', value: 32, itemStyle: { color: '#8b6439' } }
+            ]
+          },
+          { name: '团队建设', value: 150, itemStyle: { color: '#a2b029' } },
+          { name: '其他', value: 366, itemStyle: { color: '#718933' } }
+        ]
+      }
+    ]
+  },
+  {
+    name: 'ICS安全',
+    itemStyle: { color: '#da0d68' },
+    children: [
+      {
+        name: '竞赛方向',
+        itemStyle: { color: '#975e6d' },
+        children: [
+          { name: 'Web渗透', value: 3, itemStyle: { color: '#e0719c' } },
+          { name: '逆向分析', value: 9, itemStyle: { color: '#f99e1c' } },
+          { name: '工控协议', value: 4, itemStyle: { color: '#ef5a78' } },
+          { name: '工控编程', value: 3, itemStyle: { color: '#f7f1bd' } }
+        ]
+      },
+      { name: '设备发现', value: 7, itemStyle: { color: '#3e0317' } },
+      { name: '扫描方法', value: 8, itemStyle: { color: '#e62969' } },
+      { name: '扫描引擎', value: 5, itemStyle: { color: '#6569b0' } },
+      {
+        name: '漏洞利用',
+        itemStyle: { color: '#ef2d36' },
+        children: [
+          { name: '组态利用', value: 2, itemStyle: { color: '#b53b54' } },
+          { name: '通信劫持', value: 3, itemStyle: { color: '#a5446f' } },
+          { name: 'Web渗透', value: 3, itemStyle: { color: '#9ea718' } },
+          { name: '其他', value: 3, itemStyle: { color: '#94a76f' } }
+        ]
+      },
+      { name: '其他', value: 7, itemStyle: { color: '#d0b24f' } }
+    ]
+  },
+  {
+    name: '渗透测试ALL',
+    itemStyle: { color: '#da1d23' },
+    children: [
+      {
+        name: '网络基础协议',
+        itemStyle: { color: '#dd4c51' },
+        children: [
+          { name: 'HTTP标准', value: 119, itemStyle: { color: '#e62969' } },
+          { name: 'HTTPS安全', value: 20, itemStyle: { color: '#6569b0' } },
+          { name: 'TCP/IP模型', value: 18, itemStyle: { color: '#ef2d36' } },
+          { name: 'DNS系统', value: 56, itemStyle: { color: '#b53b54' } },
+          { name: '路由算法', value: 15, itemStyle: { color: '#a5446f' } },
+          { name: '其他', value: 25, itemStyle: { color: '#9ea718' } }
+        ]
+      },
+      {
+        name: '信息收集技术',
+        itemStyle: { color: '#dd4c51' },
+        children: [
+          { name: '域名侦察', value: 13, itemStyle: { color: '#94a76f' } },
+          { name: '端口扫描', value: 16, itemStyle: { color: '#d0b24f' } },
+          { name: '社会工程', value: 7, itemStyle: { color: '#8eb646' } },
+          { name: '搜索引擎', value: 15, itemStyle: { color: '#faef07' } },
+          { name: '子域名爆破', value: 12, itemStyle: { color: '#c1ba07' } },
+          { name: '其他', value: 8, itemStyle: { color: '#8f1c53' } }
+        ]
+      },
+      {
+        name: '漏洞攻防体系',
+        itemStyle: { color: '#dd4c51' },
+        children: [
+          { name: 'SQL注入', value: 53, itemStyle: { color: '#b34039' } },
+          { name: 'XSS攻击', value: 100, itemStyle: { color: '#ba9232' } },
+          { name: 'CSRF漏洞', value: 16, itemStyle: { color: '#8b6439' } },
+          { name: 'SSRF利用', value: 20, itemStyle: { color: '#a2b029' } },
+          { name: '文件上传', value: 20, itemStyle: { color: '#718933' } },
+          { name: '命令注入', value: 26, itemStyle: { color: '#3aa255' } },
+          { name: 'XXE漏洞', value: 13, itemStyle: { color: '#a2bb2b' } },
+          { name: '模板注入', value: 21, itemStyle: { color: '#62aa3c' } },
+          { name: '其他', value: 94, itemStyle: { color: '#03a653' } }
+        ]
+      },
+      {
+        name: '开发框架安全',
+        itemStyle: { color: '#dd4c51' },
+        children: [
+          { name: 'PHP安全', value: 98, itemStyle: { color: '#038549' } },
+          { name: 'JAVA框架', value: 43, itemStyle: { color: '#28b44b' } },
+          { name: 'Python沙箱', value: 11, itemStyle: { color: '#a3a830' } },
+          { name: 'JS引擎', value: 57, itemStyle: { color: '#7ac141' } },
+          { name: '反序列化', value: 96, itemStyle: { color: '#5e9a80' } },
+          { name: '其他', value: 13, itemStyle: { color: '#9db2b7' } }
+        ]
+      },
+      {
+        name: '内网渗透',
+        itemStyle: { color: '#dd4c51' },
+        children: [
+          { name: '域渗透', value: 13, itemStyle: { color: '#8b8c90' } },
+          { name: '权限维持', value: 33, itemStyle: { color: '#beb276' } },
+          { name: '痕迹清理', value: 14, itemStyle: { color: '#fefef4' } },
+          { name: '横向移动', value: 13, itemStyle: { color: '#744e03' } },
+          { name: '提权技术', value: 15, itemStyle: { color: '#a3a36f' } },
+          { name: '其他', value: 4, itemStyle: { color: '#c9b583' } }
+        ]
+      },
+      {
+        name: '防御体系建设',
+        itemStyle: { color: '#dd4c51' },
+        children: [
+          { name: '威胁情报', value: 10, itemStyle: { color: '#978847' } },
+          { name: 'ATT&CK', value: 13, itemStyle: { color: '#9d977f' } },
+          { name: '入侵检测', value: 19, itemStyle: { color: '#cc7b6a' } },
+          { name: '应急响应', value: 7, itemStyle: { color: '#db646a' } },
+          { name: '加固检测', value: 31, itemStyle: { color: '#80a89d' } },
+          { name: '其他', value: 4, itemStyle: { color: '#def2fd' } }
+        ]
+      },
+      {
+        name: '认证安全机制',
+        itemStyle: { color: '#dd4c51' },
+        children: [
+          { name: 'OAuth协议', value: 29, itemStyle: { color: '#7a9bae' } },
+          { name: 'JWT安全', value: 15, itemStyle: { color: '#039fb8' } },
+          { name: 'Kerberos', value: 20, itemStyle: { color: '#5e777b' } },
+          { name: 'SSO安全', value: 10, itemStyle: { color: '#120c0c' } },
+          { name: '其他', value: 25, itemStyle: { color: '#caa465' } }
+        ]
+      },
+      {
+        name: '工具资源集合',
+        itemStyle: { color: '#dd4c51' },
+        children: [
+          { name: '漏洞利用', value: 20, itemStyle: { color: '#dfbd7e' } },
+          { name: '模糊测试', value: 7, itemStyle: { color: '#be8663' } },
+          { name: '流量分析', value: 27, itemStyle: { color: '#b9a449' } },
+          { name: '持久化工具', value: 4, itemStyle: { color: '#899893' } },
+          { name: '手册速查', value: 5, itemStyle: { color: '#a1743b' } },
+          { name: '其他', value: 6, itemStyle: { color: '#894810' } }
+        ]
+      },
+      {
+        name: '扩展安全领域',
+        itemStyle: { color: '#dd4c51' },
+        children: [
+          { name: 'WAF绕过', value: 41, itemStyle: { color: '#ddaf61' } },
+          { name: '代码审计', value: 7, itemStyle: { color: '#b7906f' } },
+          { name: 'Docker安全', value: 23, itemStyle: { color: '#eb9d5f' } },
+          { name: '拒绝服务', value: 27, itemStyle: { color: '#794752' } }
+        ]
+      },
+      { name: '其他', value: 62, itemStyle: { color: '#cc3d41' } }
+    ]
+  },
+  {
+    name: '云上安全',
+    itemStyle: { color: '#ebb40f' },
+    children: [
+      {
+        name: '云安全基础',
+        itemStyle: { color: '#e1c315' },
+        children: [
+          { name: '云计算模式', value: 9, itemStyle: { color: '#9ea718' } },
+          { name: '云安全的区别', value: 6, itemStyle: { color: '#94a76f' } },
+          { name: '虚拟化攻击', value: 12, itemStyle: { color: '#d0b24f' } },
+          { name: 'OpenStack攻防', value: 101, itemStyle: { color: '#8eb646' } },
+          { name: '其他', value: 9, itemStyle: { color: '#faef07' } }
+        ]
+      },
+      {
+        name: 'Linux攻防',
+        itemStyle: { color: '#e1c315' },
+        children: [
+          { name: '权限管理', value: 144, itemStyle: { color: '#c1ba07' } },
+          { name: 'Bash脚本', value: 117, itemStyle: { color: '#8f1c53' } },
+          { name: '反弹Shell', value: 69, itemStyle: { color: '#b34039' } },
+          { name: '进程管理', value: 62, itemStyle: { color: '#ba9232' } },
+          { name: 'SSH攻防', value: 44, itemStyle: { color: '#8b6439' } },
+          { name: '其他', value: 39, itemStyle: { color: '#a2b029' } }
+        ]
+      },
+      {
+        name: '共有云攻防',
+        itemStyle: { color: '#e1c315' },
+        children: [
+          { name: 'AccessKey泄露', value: 40, itemStyle: { color: '#718933' } },
+          { name: '对象储存攻防', value: 34, itemStyle: { color: '#3aa255' } },
+          { name: '云函数攻防', value: 51, itemStyle: { color: '#a2bb2b' } },
+          { name: 'SSRF攻击', value: 15, itemStyle: { color: '#62aa3c' } },
+          { name: '其他', value: 53, itemStyle: { color: '#03a653' } }
+        ]
+      },
+      {
+        name: '虚拟化攻防',
+        itemStyle: { color: '#e1c315' },
+        children: [
+          { name: 'KVM安全', value: 41, itemStyle: { color: '#038549' } },
+          { name: 'vSphere攻防', value: 91, itemStyle: { color: '#28b44b' } },
+          { name: 'OpenStack渗透', value: 3, itemStyle: { color: '#a3a830' } },
+          { name: '其他', value: 27, itemStyle: { color: '#7ac141' } }
+        ]
+      },
+      {
+        name: '云原生安全',
+        itemStyle: { color: '#e1c315' },
+        children: [
+          { name: 'Docker逃逸', value: 68, itemStyle: { color: '#5e9a80' } },
+          { name: 'K8s攻击面', value: 128, itemStyle: { color: '#9db2b7' } },
+          { name: '容器安全', value: 77, itemStyle: { color: '#8b8c90' } },
+          { name: '其他', value: 8, itemStyle: { color: '#beb276' } }
+        ]
+      },
+      {
+        name: 'DevOps安全',
+        itemStyle: { color: '#e1c315' },
+        children: [
+          { name: 'Git安全', value: 91, itemStyle: { color: '#fefef4' } },
+          { name: 'Jenkins渗透', value: 109, itemStyle: { color: '#744e03' } },
+          { name: 'CI/CD风险', value: 109, itemStyle: { color: '#a3a36f' } },
+          { name: '其他', value: 5, itemStyle: { color: '#c9b583' } }
+        ]
+      },
+      { name: '其他', value: 67, itemStyle: { color: '#978847' } }
+    ]
+  },
+  {
+    name: '代码审计',
+    itemStyle: { color: '#187a2f' },
+    children: [
+      {
+        name: 'JAVA',
+        itemStyle: { color: '#3aa255' },
+        children: [
+          {
+            name: '代码审计基础',
+            itemStyle: { color: '#a2bb2b' },
+            children: [
+              { name: '审计环境搭建', value: 25, itemStyle: { color: '#62aa3c' } },
+              { name: '审计工具的使用', value: 56, itemStyle: { color: '#03a653' } },
+              { name: 'JavaEE基础', value: 347, itemStyle: { color: '#038549' } },
+              { name: '其他', value: 30, itemStyle: { color: '#28b44b' } }
+            ]
+          },
+          {
+            name: 'OWASP漏洞审计',
+            itemStyle: { color: '#a2bb2b' },
+            children: [
+              { name: '注入漏洞', value: 120, itemStyle: { color: '#a3a830' } },
+              { name: '身份认证漏洞', value: 67, itemStyle: { color: '#7ac141' } },
+              { name: '敏感信息泄露漏洞', value: 22, itemStyle: { color: '#5e9a80' } },
+              { name: 'XXE漏洞', value: 60, itemStyle: { color: '#9db2b7' } },
+              { name: '访问控制漏洞', value: 47, itemStyle: { color: '#8b8c90' } },
+              { name: '安全配置错误', value: 29, itemStyle: { color: '#beb276' } },
+              { name: 'XSS漏洞', value: 99, itemStyle: { color: '#fefef4' } },
+              { name: '反序列化漏洞', value: 229, itemStyle: { color: '#744e03' } },
+              { name: '组件漏洞', value: 38, itemStyle: { color: '#a3a36f' } },
+              { name: '日志监控漏洞', value: 28, itemStyle: { color: '#c9b583' } },
+              { name: '其他', value: 6, itemStyle: { color: '#978847' } }
+            ]
+          },
+          {
+            name: '其他常见漏洞',
+            itemStyle: { color: '#a2bb2b' },
+            children: [
+              { name: 'CSRF漏洞', value: 28, itemStyle: { color: '#9d977f' } },
+              { name: 'SSRF漏洞', value: 68, itemStyle: { color: '#cc7b6a' } },
+              { name: 'URL跳转漏洞', value: 23, itemStyle: { color: '#db646a' } },
+              { name: '文件操作漏洞', value: 147, itemStyle: { color: '#80a89d' } },
+              { name: 'Web后门漏洞', value: 31, itemStyle: { color: '#def2fd' } },
+              { name: '逻辑漏洞', value: 33, itemStyle: { color: '#7a9bae' } },
+              { name: '前端配置漏洞', value: 2, itemStyle: { color: '#039fb8' } },
+              { name: '拒绝服务漏洞', value: 18, itemStyle: { color: '#5e777b' } },
+              { name: '点击劫持漏洞', value: 18, itemStyle: { color: '#120c0c' } },
+              { name: 'HTTP参数污漏洞', value: 21, itemStyle: { color: '#caa465' } }
+            ]
+          },
+          {
+            name: '框架安全审计',
+            itemStyle: { color: '#a2bb2b' },
+            children: [
+              { name: 'SSM框架审计', value: 123, itemStyle: { color: '#dfbd7e' } },
+              { name: 'SSH框架审计', value: 41, itemStyle: { color: '#be8663' } },
+              { name: 'SpringBoot审计', value: 73, itemStyle: { color: '#b9a449' } },
+              { name: '其他', value: 3, itemStyle: { color: '#899893' } }
+            ]
+          },
+          {
+            name: '实战与工具',
+            itemStyle: { color: '#a2bb2b' },
+            children: [
+              { name: 'Jspxcms审计', value: 85, itemStyle: { color: '#a1743b' } },
+              { name: 'IAST技术', value: 10, itemStyle: { color: '#894810' } },
+              { name: 'RASP技术', value: 31, itemStyle: { color: '#ddaf61' } },
+              { name: '其他', value: 4, itemStyle: { color: '#b7906f' } }
+            ]
+          },
+          { name: '其他', value: 84, itemStyle: { color: '#eb9d5f' } }
+        ]
+      },
+      {
+        name: 'PHP',
+        itemStyle: { color: '#3aa255' },
+        children: [
+          {
+            name: '漏洞类型',
+            itemStyle: { color: '#a2bb2b' },
+            children: [
+              { name: '文件包含', value: 39, itemStyle: { color: '#794752' } },
+              { name: '变量覆盖', value: 40, itemStyle: { color: '#cc3d41' } },
+              { name: '命令执行', value: 136, itemStyle: { color: '#b14d57' } },
+              { name: '反序列化', value: 60, itemStyle: { color: '#c78936' } },
+              { name: 'SQL注入', value: 23, itemStyle: { color: '#8c292c' } },
+              { name: 'XSS攻击', value: 21, itemStyle: { color: '#e5762e' } },
+              { name: 'SSRF攻击', value: 13, itemStyle: { color: '#a16c5a' } },
+              { name: 'CSRF攻击', value: 2, itemStyle: { color: '#a87b64' } },
+              { name: 'XXE攻击', value: 11, itemStyle: { color: '#c78869' } },
+              { name: '其他', value: 15, itemStyle: { color: '#d4ad12' } }
+            ]
+          },
+          {
+            name: 'PHP特性',
+            itemStyle: { color: '#a2bb2b' },
+            children: [
+              { name: '弱类型', value: 49, itemStyle: { color: '#9d5433' } },
+              { name: '魔法Hash', value: 8, itemStyle: { color: '#c89f83' } },
+              { name: '数组特性', value: 24, itemStyle: { color: '#bb764c' } },
+              { name: '类型转换', value: 35, itemStyle: { color: '#692a19' } },
+              { name: '动态函数', value: 26, itemStyle: { color: '#470604' } },
+              { name: '其他', value: 34, itemStyle: { color: '#d45a59' } }
+            ]
+          },
+          {
+            name: '文件操作',
+            itemStyle: { color: '#a2bb2b' },
+            children: [
+              { name: '文件上传', value: 32, itemStyle: { color: '#310d0f' } },
+              { name: '文件读取', value: 26, itemStyle: { color: '#ae341f' } },
+              { name: '文件删除', value: 10, itemStyle: { color: '#d78823' } },
+              { name: '源码泄露', value: 21, itemStyle: { color: '#da5c1f' } },
+              { name: '其他', value: 13, itemStyle: { color: '#f89a80' } }
+            ]
+          },
+          {
+            name: '工具配置',
+            itemStyle: { color: '#a2bb2b' },
+            children: [
+              { name: 'Xdebug调试', value: 9, itemStyle: { color: '#f37674' } },
+              { name: 'Git工具', value: 4, itemStyle: { color: '#e75b68' } },
+              { name: '源码还原', value: 3, itemStyle: { color: '#d0545f' } },
+              { name: 'VSCODE配置', value: 6, itemStyle: { color: '#da0d68' } },
+              { name: '其他', value: 6, itemStyle: { color: '#975e6d' } }
+            ]
+          },
+          {
+            name: '框架分析',
+            itemStyle: { color: '#a2bb2b' },
+            children: [
+              { name: 'Thinkphp', value: 10, itemStyle: { color: '#e0719c' } },
+              { name: 'Codeigniter', value: 10, itemStyle: { color: '#f99e1c' } }
+            ]
+          },
+          {
+            name: '安全防护',
+            itemStyle: { color: '#a2bb2b' },
+            children: [
+              { name: '过滤函数', value: 26, itemStyle: { color: '#ef5a78' } },
+              { name: '防护配置', value: 27, itemStyle: { color: '#f7f1bd' } },
+              { name: '频率限制', value: 2, itemStyle: { color: '#3e0317' } },
+              { name: '鉴权防护', value: 12, itemStyle: { color: '#e62969' } },
+              { name: '其他', value: 2, itemStyle: { color: '#6569b0' } }
+            ]
+          },
+          { name: '加密还原', value: 56, itemStyle: { color: '#ef2d36' } },
+          { name: '审计基础', value: 22, itemStyle: { color: '#b53b54' } },
+          { name: '其他', value: 33, itemStyle: { color: '#a5446f' } }
+        ]
+      }
+    ]
+  },
+  {
+    name: '免杀',
+    itemStyle: { color: '#0aa3b5' },
+    children: [
+      {
+        name: '代码加载技术',
+        itemStyle: { color: '#9db2b7' },
+        children: [
+          { name: '线程注入', value: 44, itemStyle: { color: '#8b8c90' } },
+          { name: '进程镂空', value: 11, itemStyle: { color: '#beb276' } },
+          { name: '系统调用', value: 80, itemStyle: { color: '#fefef4' } },
+          { name: 'EDR脱钩', value: 33, itemStyle: { color: '#744e03' } },
+          { name: '动态API', value: 32, itemStyle: { color: '#a3a36f' } },
+          { name: '父进程欺骗', value: 12, itemStyle: { color: '#c9b583' } },
+          { name: '代码混淆', value: 20, itemStyle: { color: '#978847' } },
+          { name: '其他', value: 13, itemStyle: { color: '#9d977f' } }
+        ]
+      },
+      {
+        name: '加密技术',
+        itemStyle: { color: '#9db2b7' },
+        children: [
+          { name: 'AES加密', value: 7, itemStyle: { color: '#cc7b6a' } },
+          { name: '字节替换', value: 9, itemStyle: { color: '#db646a' } },
+          { name: 'XOR加密', value: 8, itemStyle: { color: '#80a89d' } },
+          { name: '其他', value: 23, itemStyle: { color: '#def2fd' } }
+        ]
+      },
+      {
+        name: 'DLL操作',
+        itemStyle: { color: '#9db2b7' },
+        children: [
+          { name: 'DLL劫持', value: 20, itemStyle: { color: '#7a9bae' } },
+          { name: 'DLL注入', value: 6, itemStyle: { color: '#039fb8' } },
+          { name: 'APC注入', value: 12, itemStyle: { color: '#5e777b' } },
+          { name: '内存加载', value: 42, itemStyle: { color: '#120c0c' } },
+          { name: '其他', value: 2, itemStyle: { color: '#caa465' } }
+        ]
+      },
+      {
+        name: 'UAC绕过',
+        itemStyle: { color: '#9db2b7' },
+        children: [
+          { name: 'UAC配置', value: 1, itemStyle: { color: '#dfbd7e' } },
+          { name: '默认程序劫持', value: 8, itemStyle: { color: '#be8663' } },
+          { name: '其他', value: 5, itemStyle: { color: '#b9a449' } }
+        ]
+      },
+      {
+        name: '反检测技术',
+        itemStyle: { color: '#9db2b7' },
+        children: [
+          { name: '虚拟机反调', value: 8, itemStyle: { color: '#899893' } },
+          { name: '命令行伪装', value: 21, itemStyle: { color: '#a1743b' } },
+          { name: '签名伪造', value: 2, itemStyle: { color: '#894810' } },
+          { name: '其他', value: 15, itemStyle: { color: '#ddaf61' } }
+        ]
+      },
+      {
+        name: '杀软对抗原理',
+        itemStyle: { color: '#9db2b7' },
+        children: [
+          { name: '静态检测', value: 10, itemStyle: { color: '#b7906f' } },
+          { name: '动态检测', value: 12, itemStyle: { color: '#eb9d5f' } },
+          { name: '流量检测', value: 1, itemStyle: { color: '#794752' } },
+          { name: '云查杀', value: 1, itemStyle: { color: '#cc3d41' } },
+          { name: '其他', value: 1, itemStyle: { color: '#b14d57' } }
+        ]
+      },
+      {
+        name: '免杀技术案列',
+        itemStyle: { color: '#9db2b7' },
+        children: [
+          { name: '编码混淆', value: 5, itemStyle: { color: '#c78936' } },
+          { name: '内存免杀', value: 18, itemStyle: { color: '#8c292c' } },
+          { name: '分离加载', value: 3, itemStyle: { color: '#e5762e' } },
+          { name: '其他', value: 2, itemStyle: { color: '#a16c5a' } }
+        ]
+      },
+      {
+        name: '工具框架',
+        itemStyle: { color: '#9db2b7' },
+        children: [
+          { name: 'Veil框架', value: 2, itemStyle: { color: '#a87b64' } },
+          { name: 'MSF集成', value: 2, itemStyle: { color: '#c78869' } },
+          { name: '其他', value: 1, itemStyle: { color: '#d4ad12' } }
+        ]
+      },
+      {
+        name: 'PE文件分析',
+        itemStyle: { color: '#9db2b7' },
+        children: [
+          { name: '结构解析', value: 9, itemStyle: { color: '#9d5433' } },
+          { name: '免杀思路', value: 5, itemStyle: { color: '#c89f83' } }
+        ]
+      },
+      { name: '其他', value: 292, itemStyle: { color: '#bb764c' } }
+    ]
+  },
+  {
+    name: '内网安全',
+    itemStyle: { color: '#c94930' },
+    children: [
+      {
+        name: 'Linux渗透',
+        itemStyle: { color: '#ddaf61' },
+        children: [
+          {
+            name: '系统信息',
+            itemStyle: { color: '#b7906f' },
+            children: [
+              { name: '内核信息', value: 1, itemStyle: { color: '#eb9d5f' } },
+              { name: '环境信息', value: 2, itemStyle: { color: '#794752' } },
+              { name: '软件列表', value: 2, itemStyle: { color: '#cc3d41' } },
+              { name: '虚拟化检测', value: 1, itemStyle: { color: '#b14d57' } },
+              { name: '容器信息', value: 3, itemStyle: { color: '#c78936' } }
+            ]
+          },
+          {
+            name: '用户权限',
+            itemStyle: { color: '#b7906f' },
+            children: [
+              { name: '权限配置', value: 5, itemStyle: { color: '#8c292c' } }
+            ]
+          },
+          {
+            name: '进程网络',
+            itemStyle: { color: '#b7906f' },
+            children: [
+              { name: '进程网络', value: 2, itemStyle: { color: '#e5762e' } },
+              { name: '计划任务', value: 1, itemStyle: { color: '#a16c5a' } },
+              { name: '网络配置', value: 4, itemStyle: { color: '#a87b64' } }
+            ]
+          },
+          {
+            name: '文件日志',
+            itemStyle: { color: '#b7906f' },
+            children: [
+              { name: '文件系统', value: 1, itemStyle: { color: '#c78869' } },
+              { name: '日志分析', value: 2, itemStyle: { color: '#d4ad12' } }
+            ]
+          },
+          {
+            name: '持久化',
+            itemStyle: { color: '#b7906f' },
+            children: [
+              { name: '权限提升', value: 2, itemStyle: { color: '#9d5433' } },
+              { name: '自启动项', value: 2, itemStyle: { color: '#c89f83' } },
+              { name: '后门植入', value: 1, itemStyle: { color: '#bb764c' } }
+            ]
+          },
+          {
+            name: '痕迹清理',
+            itemStyle: { color: '#b7906f' },
+            children: [
+              { name: '历史记录', value: 1, itemStyle: { color: '#692a19' } },
+              { name: '日志清理', value: 2, itemStyle: { color: '#470604' } },
+              { name: '登录痕迹', value: 2, itemStyle: { color: '#d45a59' } },
+              { name: '操作痕迹', value: 1, itemStyle: { color: '#310d0f' } },
+              { name: '文件覆写', value: 1, itemStyle: { color: '#ae341f' } }
+            ]
+          }
+        ]
+      },
+      {
+        name: '域渗透',
+        itemStyle: { color: '#ddaf61' },
+        children: [
+          {
+            name: '内网基础',
+            itemStyle: { color: '#b7906f' },
+            children: [
+              { name: '工作组或域架构', value: 37, itemStyle: { color: '#d78823' } },
+              { name: '活动目录', value: 350, itemStyle: { color: '#da5c1f' } },
+              { name: '权限模型', value: 303, itemStyle: { color: '#f89a80' } },
+              { name: '安全域划分', value: 69, itemStyle: { color: '#f37674' } },
+              { name: '虚拟化环境', value: 20, itemStyle: { color: '#e75b68' } },
+              { name: '其他', value: 20, itemStyle: { color: '#d0545f' } }
+            ]
+          },
+          {
+            name: '信息收集',
+            itemStyle: { color: '#b7906f' },
+            children: [
+              { name: '本机信息', value: 261, itemStyle: { color: '#da0d68' } },
+              { name: '域内探测', value: 340, itemStyle: { color: '#975e6d' } },
+              { name: '存活主机', value: 41, itemStyle: { color: '#e0719c' } },
+              { name: '端口扫描', value: 89, itemStyle: { color: '#f99e1c' } },
+              { name: '权限定位', value: 116, itemStyle: { color: '#ef5a78' } },
+              { name: '其他', value: 28, itemStyle: { color: '#f7f1bd' } }
+            ]
+          },
+          {
+            name: '隧道技术',
+            itemStyle: { color: '#b7906f' },
+            children: [
+              { name: '网络层隧道', value: 55, itemStyle: { color: '#3e0317' } },
+              { name: '传输层隧道', value: 99, itemStyle: { color: '#e62969' } },
+              { name: '应用层隧道', value: 156, itemStyle: { color: '#6569b0' } },
+              { name: 'SOCKS代理', value: 86, itemStyle: { color: '#ef2d36' } },
+              { name: '其他', value: 26, itemStyle: { color: '#b53b54' } }
+            ]
+          },
+          {
+            name: '权限提升',
+            itemStyle: { color: '#b7906f' },
+            children: [
+              { name: '系统漏洞', value: 197, itemStyle: { color: '#a5446f' } },
+              { name: '服务配置', value: 192, itemStyle: { color: '#9ea718' } },
+              { name: '组策略漏洞', value: 77, itemStyle: { color: '#94a76f' } },
+              { name: 'UAC绕过', value: 81, itemStyle: { color: '#d0b24f' } },
+              { name: '令牌窃取', value: 88, itemStyle: { color: '#8eb646' } },
+              { name: '其他', value: 38, itemStyle: { color: '#faef07' } }
+            ]
+          },
+          {
+            name: '横向移动',
+            itemStyle: { color: '#b7906f' },
+            children: [
+              { name: '远程连接', value: 141, itemStyle: { color: '#c1ba07' } },
+              { name: '哈希传递', value: 109, itemStyle: { color: '#8f1c53' } },
+              { name: '票据传递', value: 66, itemStyle: { color: '#b34039' } },
+              { name: '服务利用', value: 223, itemStyle: { color: '#ba9232' } },
+              { name: '协议漏洞', value: 193, itemStyle: { color: '#8b6439' } },
+              { name: '其他', value: 49, itemStyle: { color: '#a2b029' } }
+            ]
+          },
+          {
+            name: '域安全',
+            itemStyle: { color: '#b7906f' },
+            children: [
+              { name: '域控攻击', value: 296, itemStyle: { color: '#718933' } },
+              { name: 'Kerberos漏洞', value: 330, itemStyle: { color: '#3aa255' } },
+              { name: '信任关系', value: 52, itemStyle: { color: '#a2bb2b' } },
+              { name: '跨域攻击', value: 37, itemStyle: { color: '#62aa3c' } },
+              { name: '其他', value: 11, itemStyle: { color: '#03a653' } }
+            ]
+          },
+          {
+            name: '权限维持',
+            itemStyle: { color: '#b7906f' },
+            children: [
+              { name: '系统后门', value: 320, itemStyle: { color: '#038549' } },
+              { name: 'Web后门', value: 26, itemStyle: { color: '#28b44b' } },
+              { name: '域持久化', value: 108, itemStyle: { color: '#a3a830' } },
+              { name: '其他', value: 9, itemStyle: { color: '#7ac141' } }
+            ]
+          },
+          {
+            name: '渗透工具',
+            itemStyle: { color: '#b7906f' },
+            children: [
+              { name: 'Cobalt Strike', value: 205, itemStyle: { color: '#5e9a80' } },
+              { name: 'Metasploit', value: 186, itemStyle: { color: '#9db2b7' } },
+              { name: 'Empire', value: 29, itemStyle: { color: '#8b8c90' } },
+              { name: 'Mimikatz', value: 125, itemStyle: { color: '#beb276' } },
+              { name: '其他', value: 362, itemStyle: { color: '#fefef4' } }
+            ]
+          },
+          { name: '免杀技术', value: 141, itemStyle: { color: '#744e03' } },
+          { name: '其他', value: 251, itemStyle: { color: '#a3a36f' } }
+        ]
+      }
+    ]
+  },
+  {
+    name: '电子取证',
+    itemStyle: { color: '#ad213e' },
+    children: [
+      {
+        name: '系统配置',
+        itemStyle: { color: '#b14d57' },
+        children: [
+          { name: '系统版本', value: 42, itemStyle: { color: '#c78936' } },
+          { name: '网络配置', value: 30, itemStyle: { color: '#8c292c' } },
+          { name: '进程分析', value: 248, itemStyle: { color: '#e5762e' } },
+          { name: '文件路径', value: 133, itemStyle: { color: '#a16c5a' } },
+          { name: '用户账户', value: 220, itemStyle: { color: '#a87b64' } },
+          { name: 'WSL版本', value: 3, itemStyle: { color: '#c78869' } },
+          { name: '其他', value: 176, itemStyle: { color: '#d4ad12' } }
+        ]
+      },
+      {
+        name: '网络取证',
+        itemStyle: { color: '#b14d57' },
+        children: [
+          { name: 'IP追踪', value: 19, itemStyle: { color: '#9d5433' } },
+          { name: '端口分析', value: 39, itemStyle: { color: '#c89f83' } },
+          { name: '远程链接', value: 50, itemStyle: { color: '#bb764c' } },
+          { name: 'VPN节点', value: 2, itemStyle: { color: '#692a19' } },
+          { name: '网络工具', value: 84, itemStyle: { color: '#470604' } },
+          { name: '其他', value: 14, itemStyle: { color: '#d45a59' } }
+        ]
+      },
+      {
+        name: '加密技术',
+        itemStyle: { color: '#b14d57' },
+        children: [
+          { name: '加密算法', value: 129, itemStyle: { color: '#310d0f' } },
+          { name: '公钥分析', value: 21, itemStyle: { color: '#ae341f' } },
+          { name: '盐值提取', value: 6, itemStyle: { color: '#d78823' } },
+          { name: 'FLAG恢复', value: 18, itemStyle: { color: '#da5c1f' } },
+          { name: '文件类型', value: 11, itemStyle: { color: '#f89a80' } },
+          { name: '其他', value: 15, itemStyle: { color: '#f37674' } }
+        ]
+      },
+      {
+        name: '数据库',
+        itemStyle: { color: '#b14d57' },
+        children: [
+          { name: '版本信息', value: 5, itemStyle: { color: '#e75b68' } },
+          { name: '用户密码', value: 19, itemStyle: { color: '#d0545f' } },
+          { name: '数据恢复', value: 43, itemStyle: { color: '#da0d68' } },
+          { name: '交易统计', value: 8, itemStyle: { color: '#975e6d' } },
+          { name: '会员信息', value: 27, itemStyle: { color: '#e0719c' } },
+          { name: '其他', value: 41, itemStyle: { color: '#f99e1c' } }
+        ]
+      },
+      {
+        name: '恶意软件',
+        itemStyle: { color: '#b14d57' },
+        children: [
+          { name: 'APK分析', value: 14, itemStyle: { color: '#ef5a78' } },
+          { name: '权限分析', value: 25, itemStyle: { color: '#f7f1bd' } },
+          { name: 'EXE编译', value: 27, itemStyle: { color: '#3e0317' } },
+          { name: '勒索邮箱', value: 1, itemStyle: { color: '#e62969' } },
+          { name: '其他', value: 42, itemStyle: { color: '#6569b0' } }
+        ]
+      },
+      {
+        name: '文件日志',
+        itemStyle: { color: '#b14d57' },
+        children: [
+          { name: '文件哈希', value: 12, itemStyle: { color: '#ef2d36' } },
+          { name: '时间戳', value: 45, itemStyle: { color: '#b53b54' } },
+          { name: '日志分析', value: 78, itemStyle: { color: '#a5446f' } },
+          { name: '录屏文件', value: 1, itemStyle: { color: '#9ea718' } },
+          { name: '其他', value: 2, itemStyle: { color: '#94a76f' } }
+        ]
+      },
+      {
+        name: '内存镜像',
+        itemStyle: { color: '#b14d57' },
+        children: [
+          { name: '内存分析', value: 541, itemStyle: { color: '#d0b24f' } },
+          { name: '磁盘挂载', value: 17, itemStyle: { color: '#8eb646' } },
+          { name: '镜像转换', value: 10, itemStyle: { color: '#faef07' } },
+          { name: '其他', value: 3, itemStyle: { color: '#c1ba07' } }
+        ]
+      },
+      { name: '取证工具', value: 36, itemStyle: { color: '#8f1c53' } },
+      { name: '其他', value: 67, itemStyle: { color: '#b34039' } }
+    ]
+  },
+  {
+    name: '区块链安全',
+    itemStyle: { color: '#a87b64' },
+    children: [
+      {
+        name: '区块链开发与安全',
+        itemStyle: { color: '#c78869' },
+        children: [
+          { name: '账户模型', value: 117, itemStyle: { color: '#d4ad12' } },
+          { name: '合约结构', value: 107, itemStyle: { color: '#9d5433' } },
+          { name: '数据集合', value: 54, itemStyle: { color: '#c89f83' } },
+          { name: '跨合约调用', value: 59, itemStyle: { color: '#bb764c' } },
+          { name: '合约测试', value: 38, itemStyle: { color: '#692a19' } },
+          { name: '安全审计', value: 173, itemStyle: { color: '#470604' } },
+          { name: '事件规范', value: 39, itemStyle: { color: '#d45a59' } },
+          { name: '其他', value: 1, itemStyle: { color: '#310d0f' } }
+        ]
+      },
+      {
+        name: '区块链安全威胁',
+        itemStyle: { color: '#c78869' },
+        children: [
+          { name: '重入攻击', value: 48, itemStyle: { color: '#ae341f' } },
+          { name: '双花攻击', value: 31, itemStyle: { color: '#d78823' } },
+          { name: 'DOS攻击', value: 85, itemStyle: { color: '#da5c1f' } },
+          { name: '女巫攻击', value: 21, itemStyle: { color: '#f89a80' } },
+          { name: 'RPC攻击', value: 42, itemStyle: { color: '#f37674' } },
+          { name: '算力攻击', value: 14, itemStyle: { color: '#e75b68' } },
+          { name: '其他', value: 2, itemStyle: { color: '#d0545f' } }
+        ]
+      },
+      {
+        name: '区块链基础理论',
+        itemStyle: { color: '#c78869' },
+        children: [
+          { name: '分层模型', value: 2, itemStyle: { color: '#da0d68' } },
+          { name: '共识算法', value: 46, itemStyle: { color: '#975e6d' } },
+          { name: '交易模型', value: 21, itemStyle: { color: '#e0719c' } },
+          { name: '激励机制', value: 4, itemStyle: { color: '#f99e1c' } },
+          { name: '网络架构', value: 7, itemStyle: { color: '#ef5a78' } },
+          { name: '其他', value: 1, itemStyle: { color: '#f7f1bd' } }
+        ]
+      },
+      {
+        name: '以太坊技术实现',
+        itemStyle: { color: '#c78869' },
+        children: [
+          { name: '账户体系', value: 6, itemStyle: { color: '#3e0317' } },
+          { name: 'MPT结构', value: 9, itemStyle: { color: '#e62969' } },
+          { name: 'Gas机制', value: 18, itemStyle: { color: '#6569b0' } },
+          { name: '智能合约', value: 7, itemStyle: { color: '#ef2d36' } },
+          { name: 'DApp开发', value: 4, itemStyle: { color: '#b53b54' } },
+          { name: '其他', value: 3, itemStyle: { color: '#a5446f' } }
+        ]
+      },
+      {
+        name: '安全工具与实践',
+        itemStyle: { color: '#c78869' },
+        children: [
+          { name: '区块链浏览器', value: 9, itemStyle: { color: '#9ea718' } },
+          { name: '交易分析', value: 8, itemStyle: { color: '#94a76f' } },
+          { name: '合约逆向', value: 9, itemStyle: { color: '#d0b24f' } },
+          { name: '安全靶场', value: 5, itemStyle: { color: '#8eb646' } },
+          { name: 'RPC连接', value: 9, itemStyle: { color: '#faef07' } },
+          { name: '其他', value: 2, itemStyle: { color: '#c1ba07' } }
+        ]
+      },
+      { name: '其他', value: 28, itemStyle: { color: '#8f1c53' } }
+    ]
+  },
+  {
+    name: '溯源反制',
+    itemStyle: { color: '#e65832' },
+    children: [
+      {
+        name: '追踪溯源',
+        itemStyle: { color: '#d45a59' },
+        children: [
+          { name: '攻击捕获', value: 14, itemStyle: { color: '#310d0f' } },
+          { name: 'IP定位', value: 17, itemStyle: { color: '#ae341f' } },
+          { name: '蜜罐捕获', value: 8, itemStyle: { color: '#d78823' } },
+          { name: '其他', value: 1, itemStyle: { color: '#da5c1f' } }
+        ]
+      },
+      {
+        name: '安全防护',
+        itemStyle: { color: '#d45a59' },
+        children: [
+          { name: '边界防护', value: 12, itemStyle: { color: '#f89a80' } },
+          { name: '日志审计', value: 12, itemStyle: { color: '#f37674' } },
+          { name: '异常检测', value: 17, itemStyle: { color: '#e75b68' } },
+          { name: '其他', value: 1, itemStyle: { color: '#d0545f' } }
+        ]
+      },
+      {
+        name: '反制技术',
+        itemStyle: { color: '#d45a59' },
+        children: [
+          { name: '渗透反打', value: 11, itemStyle: { color: '#da0d68' } },
+          { name: '傀儡机', value: 3, itemStyle: { color: '#975e6d' } }
+        ]
+      },
+      {
+        name: '样本分析',
+        itemStyle: { color: '#d45a59' },
+        children: [
+          { name: '恶意样本', value: 22, itemStyle: { color: '#e0719c' } },
+          { name: '样本逆向', value: 8, itemStyle: { color: '#f99e1c' } },
+          { name: '钓鱼邮件', value: 3, itemStyle: { color: '#ef5a78' } }
+        ]
+      },
+      {
+        name: '行为分析',
+        itemStyle: { color: '#d45a59' },
+        children: [
+          { name: '攻击画像', value: 8, itemStyle: { color: '#f7f1bd' } }
+        ]
+      },
+      {
+        name: '隐私保护',
+        itemStyle: { color: '#d45a59' },
+        children: [
+          { name: '防溯源', value: 19, itemStyle: { color: '#3e0317' } },
+          { name: '其他', value: 1, itemStyle: { color: '#e62969' } }
+        ]
+      },
+      { name: '其他', value: 3, itemStyle: { color: '#6569b0' } }
+    ]
+  },
+  {
+    name: '物联网(IoT)安全',
+    itemStyle: { color: '#e65832' },
+    children: [
+      {
+        name: '固件获取',
+        itemStyle: { color: '#d45a59' },
+        children: [
+          { name: '供应商网站', value: 21, itemStyle: { color: '#ef2d36' } },
+          { name: '设备更新', value: 12, itemStyle: { color: '#b53b54' } },
+          { name: '调试接口', value: 26, itemStyle: { color: '#a5446f' } },
+          { name: 'Flash提取', value: 18, itemStyle: { color: '#9ea718' } },
+          { name: '其他方式', value: 9, itemStyle: { color: '#94a76f' } }
+        ]
+      },
+      {
+        name: '文件系统分析',
+        itemStyle: { color: '#d45a59' },
+        children: [
+          { name: '提取方法', value: 38, itemStyle: { color: '#d0b24f' } },
+          { name: '静态分析', value: 81, itemStyle: { color: '#8eb646' } },
+          { name: '动态分析', value: 14, itemStyle: { color: '#faef07' } }
+        ]
+      },
+      {
+        name: '固件仿真',
+        itemStyle: { color: '#d45a59' },
+        children: [
+          { name: '局部仿真', value: 7, itemStyle: { color: '#c1ba07' } },
+          { name: '系统仿真', value: 48, itemStyle: { color: '#8f1c53' } },
+          { name: '自动化工具', value: 21, itemStyle: { color: '#b34039' } }
+        ]
+      },
+      {
+        name: '自动化分析',
+        itemStyle: { color: '#d45a59' },
+        children: [
+          { name: 'EMBA工具', value: 32, itemStyle: { color: '#ba9232' } },
+          { name: 'FACT-core', value: 36, itemStyle: { color: '#8b6439' } },
+          { name: '其他工具', value: 31, itemStyle: { color: '#a2b029' } }
+        ]
+      },
+      {
+        name: '漏洞利用',
+        itemStyle: { color: '#d45a59' },
+        children: [
+          { name: '信息收集', value: 94, itemStyle: { color: '#718933' } },
+          { name: '逆向分析', value: 100, itemStyle: { color: '#3aa255' } },
+          { name: '仿真测试', value: 48, itemStyle: { color: '#a2bb2b' } },
+          { name: '其他', value: 61, itemStyle: { color: '#62aa3c' } }
+        ]
+      },
+      {
+        name: '固件解密',
+        itemStyle: { color: '#d45a59' },
+        children: [
+          { name: '加密方式', value: 13, itemStyle: { color: '#03a653' } },
+          { name: '解密方式', value: 20, itemStyle: { color: '#038549' } },
+          { name: '实战案例', value: 8, itemStyle: { color: '#28b44b' } }
+        ]
+      },
+      { name: '社区资源', value: 4, itemStyle: { color: '#a3a830' } },
+      { name: '安全研究', value: 75, itemStyle: { color: '#7ac141' } },
+      { name: '其他', value: 21, itemStyle: { color: '#5e9a80' } }
+    ]
+  },
+  {
+    name: '应急响应',
+    itemStyle: { color: '#e65832' },
+    children: [
+      {
+        name: 'Linux',
+        itemStyle: { color: '#d45a59' },
+        children: [
+          {
+            name: '恶意软件处理',
+            itemStyle: { color: '#310d0f' },
+            children: [
+              { name: '挖矿病毒', value: 15, itemStyle: { color: '#ae341f' } },
+              { name: '远控后门', value: 223, itemStyle: { color: '#d78823' } },
+              { name: '勒索病毒', value: 15, itemStyle: { color: '#da5c1f' } },
+              { name: '供应链攻击', value: 266, itemStyle: { color: '#f89a80' } },
+              { name: '其他', value: 45, itemStyle: { color: '#f37674' } }
+            ]
+          },
+          {
+            name: '暴力破解',
+            itemStyle: { color: '#310d0f' },
+            children: [
+              { name: 'SS破解', value: 47, itemStyle: { color: '#e75b68' } },
+              { name: 'MySQL破解', value: 6, itemStyle: { color: '#d0545f' } },
+              { name: 'FTP破解', value: 24, itemStyle: { color: '#da0d68' } },
+              { name: 'Redis破解', value: 13, itemStyle: { color: '#975e6d' } },
+              { name: '其他', value: 102, itemStyle: { color: '#e0719c' } }
+            ]
+          },
+          {
+            name: '隧道技术',
+            itemStyle: { color: '#310d0f' },
+            children: [
+              { name: 'SSH隧道', value: 87, itemStyle: { color: '#f99e1c' } },
+              { name: 'DNS隧道', value: 23, itemStyle: { color: '#ef5a78' } },
+              { name: 'ICMO隧道', value: 9, itemStyle: { color: '#f7f1bd' } },
+              { name: 'HTTP隧道', value: 23, itemStyle: { color: '#3e0317' } },
+              { name: '其他', value: 25, itemStyle: { color: '#e62969' } }
+            ]
+          },
+          {
+            name: '安全检查',
+            itemStyle: { color: '#310d0f' },
+            children: [
+              { name: '计划任务', value: 66, itemStyle: { color: '#6569b0' } },
+              { name: '账户审查', value: 81, itemStyle: { color: '#ef2d36' } },
+              { name: '服务配置', value: 348, itemStyle: { color: '#b53b54' } },
+              { name: '特权文件', value: 110, itemStyle: { color: '#a5446f' } },
+              { name: '其他', value: 31, itemStyle: { color: '#9ea718' } }
+            ]
+          },
+          {
+            name: '进程管理',
+            itemStyle: { color: '#310d0f' },
+            children: [
+              { name: '进程查杀', value: 95, itemStyle: { color: '#94a76f' } },
+              { name: '守护进程', value: 87, itemStyle: { color: '#d0b24f' } },
+              { name: '线程处理', value: 27, itemStyle: { color: '#8eb646' } },
+              { name: '其他', value: 122, itemStyle: { color: '#faef07' } }
+            ]
+          },
+          {
+            name: '数据恢复',
+            itemStyle: { color: '#310d0f' },
+            children: [
+              { name: '文件恢复', value: 138, itemStyle: { color: '#c1ba07' } },
+              { name: '磁盘取证', value: 68, itemStyle: { color: '#8f1c53' } },
+              { name: '其他', value: 8, itemStyle: { color: '#b34039' } }
+            ]
+          },
+          {
+            name: '日志分析',
+            itemStyle: { color: '#310d0f' },
+            children: [
+              { name: 'SSH日志', value: 39, itemStyle: { color: '#ba9232' } },
+              { name: '其他', value: 179, itemStyle: { color: '#8b6439' } }
+            ]
+          },
+          {
+            name: '系统配置',
+            itemStyle: { color: '#310d0f' },
+            children: [
+              { name: '启动项', value: 86, itemStyle: { color: '#a2b029' } },
+              { name: '内核模块', value: 79, itemStyle: { color: '#718933' } },
+              { name: 'PAM配置', value: 102, itemStyle: { color: '#3aa255' } },
+              { name: '其他', value: 130, itemStyle: { color: '#a2bb2b' } }
+            ]
+          },
+          {
+            name: '网络分析',
+            itemStyle: { color: '#310d0f' },
+            children: [
+              { name: '抓包技巧', value: 82, itemStyle: { color: '#62aa3c' } },
+              { name: '端口监控', value: 42, itemStyle: { color: '#03a653' } },
+              { name: '其他', value: 31, itemStyle: { color: '#038549' } }
+            ]
+          },
+          {
+            name: '应急基础',
+            itemStyle: { color: '#310d0f' },
+            children: [
+              { name: '终端处理', value: 95, itemStyle: { color: '#28b44b' } },
+              { name: '文件删除', value: 36, itemStyle: { color: '#a3a830' } },
+              { name: '权限检查', value: 126, itemStyle: { color: '#7ac141' } },
+              { name: '其他', value: 25, itemStyle: { color: '#5e9a80' } }
+            ]
+          },
+          { name: '其他', value: 325, itemStyle: { color: '#9db2b7' } }
+        ]
+      },
+      {
+        name: 'Windows',
+        itemStyle: { color: '#d45a59' },
+        children: [
+          {
+            name: '应急响应流程',
+            itemStyle: { color: '#310d0f' },
+            children: [
+              { name: '事前准备', value: 19, itemStyle: { color: '#8b8c90' } },
+              { name: '事件处置', value: 158, itemStyle: { color: '#beb276' } },
+              { name: '善后阶段', value: 36, itemStyle: { color: '#fefef4' } },
+              { name: '安全检查', value: 57, itemStyle: { color: '#744e03' } }
+            ]
+          },
+          {
+            name: '病毒类型',
+            itemStyle: { color: '#310d0f' },
+            children: [
+              { name: '挖矿病毒', value: 145, itemStyle: { color: '#a3a36f' } },
+              { name: '远控后门', value: 390, itemStyle: { color: '#c9b583' } },
+              { name: '勒索病毒', value: 6, itemStyle: { color: '#978847' } },
+              { name: '隧道病毒', value: 39, itemStyle: { color: '#9d977f' } },
+              { name: '其他', value: 6, itemStyle: { color: '#cc7b6a' } }
+            ]
+          },
+          {
+            name: '安全工具',
+            itemStyle: { color: '#310d0f' },
+            children: [
+              { name: '排查工具', value: 240, itemStyle: { color: '#db646a' } },
+              { name: '杀毒工具', value: 51, itemStyle: { color: '#80a89d' } },
+              { name: '网络工具', value: 132, itemStyle: { color: '#def2fd' } },
+              { name: '进程工具', value: 206, itemStyle: { color: '#7a9bae' } },
+              { name: '其他', value: 30, itemStyle: { color: '#039fb8' } }
+            ]
+          },
+          {
+            name: '日志分析',
+            itemStyle: { color: '#310d0f' },
+            children: [
+              { name: '登录日志', value: 128, itemStyle: { color: '#5e777b' } },
+              { name: '进程日志', value: 49, itemStyle: { color: '#120c0c' } },
+              { name: '网络日志', value: 71, itemStyle: { color: '#caa465' } },
+              { name: '服务日志', value: 114, itemStyle: { color: '#dfbd7e' } },
+              { name: '其他', value: 36, itemStyle: { color: '#be8663' } }
+            ]
+          },
+          {
+            name: '系统检查',
+            itemStyle: { color: '#310d0f' },
+            children: [
+              { name: '进程管理', value: 953, itemStyle: { color: '#b9a449' } },
+              { name: '注册表', value: 549, itemStyle: { color: '#899893' } },
+              { name: '文件检查', value: 479, itemStyle: { color: '#a1743b' } },
+              { name: '服务检查', value: 690, itemStyle: { color: '#894810' } },
+              { name: '其他', value: 70, itemStyle: { color: '#ddaf61' } }
+            ]
+          },
+          {
+            name: '暴力破解',
+            itemStyle: { color: '#310d0f' },
+            children: [
+              { name: 'RDP破解', value: 52, itemStyle: { color: '#b7906f' } },
+              { name: 'SMB破解', value: 45, itemStyle: { color: '#eb9d5f' } },
+              { name: 'FTP破解', value: 51, itemStyle: { color: '#794752' } },
+              { name: 'MSSQL破解', value: 22, itemStyle: { color: '#cc3d41' } },
+              { name: '其他', value: 59, itemStyle: { color: '#b14d57' } }
+            ]
+          },
+          { name: '隧道检测', value: 210, itemStyle: { color: '#c78936' } },
+          { name: '设备取证', value: 104, itemStyle: { color: '#8c292c' } },
+          { name: '其他', value: 235, itemStyle: { color: '#e5762e' } }
+        ]
+      }
+    ]
+  },
+  {
+    name: '整车安全',
+    itemStyle: { color: '#e65832' },
+    children: [
+      {
+        name: '硬件安全',
+        itemStyle: { color: '#d45a59' },
+        children: [
+          { name: '通用硬件', value: 3, itemStyle: { color: '#a16c5a' } },
+          { name: '传感器测试', value: 2, itemStyle: { color: '#a87b64' } },
+          { name: '安全模块', value: 10, itemStyle: { color: '#c78869' } },
+          { name: '芯片分析', value: 13, itemStyle: { color: '#d4ad12' } },
+          { name: '传感器干扰', value: 7, itemStyle: { color: '#9d5433' } },
+          { name: '其他', value: 1, itemStyle: { color: '#c89f83' } }
+        ]
+      },
+      {
+        name: '接口安全',
+        itemStyle: { color: '#d45a59' },
+        children: [
+          { name: 'USB接口', value: 4, itemStyle: { color: '#bb764c' } },
+          { name: '诊断接口', value: 6, itemStyle: { color: '#692a19' } },
+          { name: 'OBD接口', value: 3, itemStyle: { color: '#470604' } },
+          { name: '其他', value: 2, itemStyle: { color: '#d45a59' } }
+        ]
+      },
+      {
+        name: '通信安全',
+        itemStyle: { color: '#d45a59' },
+        children: [
+          { name: '移动网络', value: 4, itemStyle: { color: '#310d0f' } },
+          { name: 'V2X通信', value: 4, itemStyle: { color: '#ae341f' } },
+          { name: 'WIFI测试', value: 5, itemStyle: { color: '#d78823' } },
+          { name: '蓝牙测试', value: 8, itemStyle: { color: '#da5c1f' } },
+          { name: 'NFC测试', value: 2, itemStyle: { color: '#f89a80' } },
+          { name: '以太网', value: 4, itemStyle: { color: '#f37674' } },
+          { name: 'CAN通信', value: 9, itemStyle: { color: '#e75b68' } },
+          { name: '流量分析', value: 4, itemStyle: { color: '#d0545f' } },
+          { name: '中继攻击', value: 11, itemStyle: { color: '#da0d68' } },
+          { name: '协议模糊', value: 5, itemStyle: { color: '#975e6d' } },
+          { name: '其他', value: 2, itemStyle: { color: '#e0719c' } }
+        ]
+      },
+      {
+        name: '系统安全',
+        itemStyle: { color: '#d45a59' },
+        children: [
+          { name: '系统漏洞', value: 6, itemStyle: { color: '#f99e1c' } },
+          { name: '安全配置', value: 10, itemStyle: { color: '#ef5a78' } },
+          { name: 'Android', value: 7, itemStyle: { color: '#f7f1bd' } },
+          { name: '信息采集', value: 5, itemStyle: { color: '#3e0317' } }
+        ]
+      },
+      {
+        name: '应用安全',
+        itemStyle: { color: '#d45a59' },
+        children: [
+          { name: '应用防护', value: 3, itemStyle: { color: '#e62969' } },
+          { name: '应用漏洞', value: 4, itemStyle: { color: '#6569b0' } },
+          { name: '服务测试', value: 4, itemStyle: { color: '#ef2d36' } },
+          { name: '脱壳分析', value: 3, itemStyle: { color: '#b53b54' } },
+          { name: '静态分析', value: 4, itemStyle: { color: '#a5446f' } },
+          { name: '动态分析', value: 8, itemStyle: { color: '#9ea718' } },
+          { name: '其他', value: 1, itemStyle: { color: '#94a76f' } }
+        ]
+      },
+      {
+        name: '数据安全',
+        itemStyle: { color: '#d45a59' },
+        children: [
+          { name: '未授权获取', value: 2, itemStyle: { color: '#d0b24f' } },
+          { name: '数据篡改', value: 3, itemStyle: { color: '#8eb646' } },
+          { name: '数据泄露', value: 7, itemStyle: { color: '#faef07' } },
+          { name: '其他', value: 1, itemStyle: { color: '#c1ba07' } }
+        ]
+      },
+      {
+        name: '业务安全',
+        itemStyle: { color: '#d45a59' },
+        children: [
+          { name: '升级服务', value: 7, itemStyle: { color: '#8f1c53' } },
+          { name: '充电服务', value: 10, itemStyle: { color: '#b34039' } },
+          { name: '控车服务', value: 7, itemStyle: { color: '#ba9232' } },
+          { name: '云端服务', value: 7, itemStyle: { color: '#8b6439' } },
+          { name: '其他', value: 2, itemStyle: { color: '#a2b029' } }
+        ]
+      },
+      {
+        name: '深度测试',
+        itemStyle: { color: '#d45a59' },
+        children: [
+          { name: '漏洞挖掘', value: 7, itemStyle: { color: '#718933' } },
+          { name: '模糊测试', value: 10, itemStyle: { color: '#3aa255' } },
+          { name: '协议分析', value: 7, itemStyle: { color: '#a2bb2b' } },
+          { name: '深度业务', value: 16, itemStyle: { color: '#62aa3c' } }
+        ]
+      },
+      {
+        name: '测试实施',
+        itemStyle: { color: '#d45a59' },
+        children: [
+          { name: '测试流程', value: 12, itemStyle: { color: '#03a653' } },
+          { name: '测试工具', value: 10, itemStyle: { color: '#038549' } },
+          { name: '安全问题', value: 8, itemStyle: { color: '#28b44b' } }
+        ]
+      },
+      {
+        name: '安全漏洞',
+        itemStyle: { color: '#d45a59' },
+        children: [
+          { name: '硬件漏洞', value: 1, itemStyle: { color: '#a3a830' } },
+          { name: '系统漏洞', value: 1, itemStyle: { color: '#7ac141' } },
+          { name: '二进制漏洞', value: 5, itemStyle: { color: '#5e9a80' } },
+          { name: '升级漏洞', value: 3, itemStyle: { color: '#9db2b7' } },
+          { name: '外设漏洞', value: 3, itemStyle: { color: '#8b8c90' } }
+        ]
+      },
+      { name: '其他', value: 75, itemStyle: { color: '#beb276' } }
+    ]
+  },
+  {
+    name: '社工',
+    itemStyle: { color: '#e65832' },
+    children: [
+      {
+        name: '黑客攻击行为',
+        itemStyle: { color: '#d45a59' },
+        children: [
+          { name: '攻击分类', value: 51, itemStyle: { color: '#fefef4' } },
+          { name: '本能学说', value: 6, itemStyle: { color: '#744e03' } },
+          { name: '非本能学说', value: 1, itemStyle: { color: '#a3a36f' } },
+          { name: '意愿弱化', value: 9, itemStyle: { color: '#c9b583' } },
+          { name: '其他', value: 3, itemStyle: { color: '#978847' } }
+        ]
+      },
+      {
+        name: '社工心里特征',
+        itemStyle: { color: '#d45a59' },
+        children: [
+          { name: '个体认知', value: 41, itemStyle: { color: '#9d977f' } },
+          { name: '群体认知', value: 49, itemStyle: { color: '#cc7b6a' } },
+          { name: '其他', value: 1, itemStyle: { color: '#db646a' } }
+        ]
+      },
+      {
+        name: '感知漏洞',
+        itemStyle: { color: '#d45a59' },
+        children: [
+          { name: '知觉漏洞', value: 39, itemStyle: { color: '#80a89d' } },
+          { name: '感觉漏洞', value: 62, itemStyle: { color: '#def2fd' } }
+        ]
+      },
+      {
+        name: '认知博弈',
+        itemStyle: { color: '#d45a59' },
+        children: [
+          { name: '记忆对抗', value: 40, itemStyle: { color: '#7a9bae' } },
+          { name: '情绪调控', value: 59, itemStyle: { color: '#039fb8' } },
+          { name: '注意控制', value: 63, itemStyle: { color: '#5e777b' } },
+          { name: '其他', value: 8, itemStyle: { color: '#120c0c' } }
+        ]
+      },
+      {
+        name: '动机诱惑',
+        itemStyle: { color: '#d45a59' },
+        children: [
+          { name: '需求理论', value: 47, itemStyle: { color: '#caa465' } },
+          { name: '动机强化', value: 41, itemStyle: { color: '#dfbd7e' } }
+        ]
+      },
+      {
+        name: '非言语泄密',
+        itemStyle: { color: '#d45a59' },
+        children: [
+          { name: '微表情', value: 68, itemStyle: { color: '#be8663' } },
+          { name: '肢体语言', value: 50, itemStyle: { color: '#b9a449' } },
+          { name: '姿势泄密', value: 66, itemStyle: { color: '#899893' } },
+          { name: '其他', value: 7, itemStyle: { color: '#a1743b' } }
+        ]
+      },
+      {
+        name: '社会行为',
+        itemStyle: { color: '#d45a59' },
+        children: [
+          { name: '人际关系', value: 19, itemStyle: { color: '#894810' } },
+          { name: '态度形成', value: 33, itemStyle: { color: '#ddaf61' } },
+          { name: '利他行为', value: 20, itemStyle: { color: '#b7906f' } },
+          { name: '其他', value: 4, itemStyle: { color: '#eb9d5f' } }
+        ]
+      },
+      {
+        name: '应用技术',
+        itemStyle: { color: '#d45a59' },
+        children: [
+          { name: '读人欺骗', value: 75, itemStyle: { color: '#794752' } },
+          { name: '说服影响', value: 100, itemStyle: { color: '#cc3d41' } },
+          { name: '案例实践', value: 97, itemStyle: { color: '#b14d57' } },
+          { name: '其他', value: 1, itemStyle: { color: '#c78936' } }
+        ]
+      },
+      { name: '其他', value: 10, itemStyle: { color: '#8c292c' } }
+    ]
+  },
+  {
+    name: '渗透测试面试',
+    value: 603,
+    itemStyle: { color: '#e5762e' }
+  }
+];
+
+option = {
+  title: {
+    text: '安全技术知识体系',
+    subtext: '安全技术分类与数量统计',
+    textStyle: {
+      fontSize: 14,
+      align: 'center'
+    },
+    subtextStyle: {
+      align: 'center'
+    }
+  },
+  series: {
+    type: 'sunburst',
+    data: data,
+    radius: [0, '95%'],
+    sort: undefined,
+    emphasis: {
+      focus: 'ancestor'
+    },
+    levels: [
+      {},
+      {
+        r0: '15%',
+        r: '35%',
+        itemStyle: {
+          borderWidth: 2
+        },
+        label: {
+          rotate: 'tangential'
+        }
+      },
+      {
+        r0: '35%',
+        r: '70%',
+        label: {
+          align: 'right'
+        }
+      },
+      {
+        r0: '70%',
+        r: '72%',
+        label: {
+          position: 'outside',
+          padding: 3,
+          silent: false
+        },
+        itemStyle: {
+          borderWidth: 3
+        }
+      }
+    ]
+  }
+};
+
+    if (option && typeof option === 'object') {
+      myChart.setOption(option);
+    }
+
+    window.addEventListener('resize', myChart.resize);
+  </script>
+</body>
+</html>
