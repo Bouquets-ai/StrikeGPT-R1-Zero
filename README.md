@@ -1,10 +1,10 @@
 
-# ⚠经过多次测试，loss值始终无法降到1以下，大概是数据集的问题，同样的代码调别的数据就能正常收敛，然后把CoT去掉也能正常收敛，学习率、Batch Size、权重都改过了还是无法解决，博主钱包遭不住了，有钱了再实验（每实验一次的花费在RMB:110-90）,微调模型已经发布（loss1.5震荡，10epochs）：https://huggingface.co/Bouquets/StrikeGPT-R1-Zero-7B  后续有钱有时间再继续学习/(ㄒoㄒ)/~~。不过经过测试问了很多安全问题胡话相对于原模型已经大幅降低，但还是有些许错误，模型没损坏有兴趣的朋友可以接着DK or sft
+# ⚠正在测试qwen3 7B 4B 1.7B模型，目前效果良好，小规模测试已通过，正在进行蒸馏/微调
 
 # 🤖 StrikeGPT-R1-Zero: 网络安全渗透领域推理模型 
 
 ## 🚀 模型简介  
-**StrikeGPT-R1-Zero** 是基于 **DeepSeek-R1-Distill-Qwen-7B** 进行二次知识蒸馏（Distillation of Knowledge, DK）的专家模型，其教师模型为 DeepSeek-R1，涵盖：  
+**StrikeGPT-R1-Zero** 是基于 **Qwen3** 进行知识蒸馏（Distillation of Knowledge, DK）的专家模型，其教师模型为 DeepSeek-R1，涵盖：  
 🔒 AI安全 | 🛡️ API安全 | 📱 APP安全 | 🕵️ APT | 🚩 CTF  
 🏭 ICS安全 | 💻 渗透测试ALL | ☁️ 云上安全 | 📜 代码审计  
 🦠 免杀 | 🌐 内网安全 | 💾 电子取证 | ₿ 区块链安全 | 🕳️ 溯源反制 | 🌍 物联网(IoT)安全<br>
@@ -12,7 +12,7 @@
 ### 👉 [点击访问可交互式详细数据分布图](https://bouquets-ai.github.io/StrikeGPT-R1-Zero/WEB)  
 ### 🌟 模型亮点
 - 🧩采用**思维链(CoT)推理数据**优化模型逻辑能力，显著提升在漏洞分析等复杂任务的表现
-- 💪Base模型采用Distill-Qwen相较于Distill-Llama更适合中国宝宝体制
+- 💪Base模型采用Qwen3相较于Distill-Llama更适合中国宝宝体制
 - ⚠️**无道德限制**在特定领域的学术研究有不一样的表现（请在符合当地法律的情况下使用）
 - ✨特定情况下如断网状态下的**网络安全大赛**，相较于本地RAG形式StrikeGPT-R1-Zero逻辑推理能力更强，在复杂任务处理方面表现更佳。
      将发布1.5B和7B两个蒸馏版本，并采用Q4_K_M、Q5_K_M、Q8_0三种量化方式，在端侧推理任务上有更多灵活选择。
@@ -34,7 +34,7 @@
 
 ## 💰 训练成本  
 - **DeepSeek-R1 API调用费用**: ¥450 (均在打折时调用，正常调用价格在¥1800)
-- **服务器开销**: ¥3?0
+- **服务器开销**: ¥4?0
 - **电子资源**: ¥??
   ![image](https://github.com/user-attachments/assets/8e23b5b6-24d9-47c3-b54f-ffa22ec68a83)
 
