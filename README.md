@@ -1,10 +1,10 @@
 
-# ⚠正在测试qwen3 8B 4B 1.7B模型，目前效果良好，小规模测试已通过，正在进行蒸馏/微调
+# ⚠正在测试qwen3 8B 4B 1.7B模型，目前效果良好，小规模测试已通过，正在进行数据蒸馏/微调
 
 # 🤖 StrikeGPT-R1-Zero: 网络安全渗透领域推理模型 
 
 ## 🚀 模型简介  
-**StrikeGPT-R1-Zero** 是基于 **Qwen3** 进行知识蒸馏（Distillation of Knowledge, DK）的专家模型，其教师模型为 DeepSeek-R1，涵盖：  
+**StrikeGPT-R1-Zero** 是基于 **Qwen3** 进行数据蒸馏/微调（Distillation of Knowledge, DK）的专家模型，其教师模型为 DeepSeek-R1，涵盖：  
 🔒 AI安全 | 🛡️ API安全 | 📱 APP安全 | 🕵️ APT | 🚩 CTF  
 🏭 ICS安全 | 💻 渗透测试ALL | ☁️ 云上安全 | 📜 代码审计  
 🦠 免杀 | 🌐 内网安全 | 💾 电子取证 | ₿ 区块链安全 | 🕳️ 溯源反制 | 🌍 物联网(IoT)安全<br>
