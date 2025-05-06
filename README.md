@@ -20,6 +20,7 @@
 ## 🛠️模型部署
 ### 通过ollama进行部署
 `ollama run hf.co/Bouquets/StrikeGPT-R1-Zero-8B-Q4_K_M-GGUF:Q4_K_M`
+
 **也可以直接调用原始模型**
 ```
 from unsloth import FastLanguageModel
@@ -34,7 +35,7 @@ model, tokenizer = FastLanguageModel.from_pretrained(
     max_seq_length = max_seq_length,
     dtype = dtype,
     load_in_4bit = load_in_4bit,
-    # token = "hf_...", # use one if using gated models like meta-llama/Llama-2-7b-hf
+    # token = "hf_...",
 )
 alpaca_prompt = """Below is an instruction that describes a task, paired with an input that provides further context. Write a response that appropriately completes the request.
 
@@ -125,6 +126,8 @@ _ = model.generate(input_ids = inputs.input_ids, attention_mask = inputs.attenti
 
 ### 代码审计（联动项目DeepSeekSelfTool）
 ![image](https://github.com/user-attachments/assets/c7dc4b66-379d-4c57-aaf2-3d4d73d1484c)
+![image](https://github.com/user-attachments/assets/69a692a5-3290-4062-a4c7-de34c22d4d90)
+![image](https://github.com/user-attachments/assets/b3df6f14-ccf0-44ec-ac69-c673ed1398c6)
 
 
 
