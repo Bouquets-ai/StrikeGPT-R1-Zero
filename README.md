@@ -28,8 +28,6 @@
 ## 🎯 核心能力展示&对比（原模型有道德限制就不做比较，简单比较SecGPT-7B模型【大佬写的评估脚本我改不来/(ㄒoㄒ)/~~】）
 ![image](https://github.com/user-attachments/assets/8166a1d3-c69f-4b8a-821f-0dd83dcd4544)
 
-### MCP+IDA
-
 ### CTF
 ![image](https://github.com/user-attachments/assets/e6552b0b-521f-4d3f-8ba1-b9a3ce136d65)
 ![image](https://github.com/user-attachments/assets/df55e964-0bc3-45a9-97a6-625ea9d086fe)
@@ -57,8 +55,10 @@
 ![image](https://github.com/user-attachments/assets/d30a620f-f5e7-473c-a2f5-2ae171479e3f)
 ![image](https://github.com/user-attachments/assets/bb3288b4-fa47-4265-9a30-8fdd62b1e651)
 
-
 ### 内网安全
+![image](https://github.com/user-attachments/assets/02fba088-9419-47ec-9072-de9a362a4e08)
+![image](https://github.com/user-attachments/assets/05e9aef3-690f-4608-998c-8715e1a90e59)
+
 ### 社工
 ![image](https://github.com/user-attachments/assets/6e1eb9ec-1bf5-4bc2-acdf-c5b004b58f6e)
 ![image](https://github.com/user-attachments/assets/f0c93222-56e6-4253-b6bb-3eeb8ec7d9cf)
@@ -67,8 +67,10 @@
 ![image](https://github.com/user-attachments/assets/6e037fff-e46b-42d5-997d-559fb300aba0)
 ![image](https://github.com/user-attachments/assets/e8c1c0fd-16af-46e1-8b7b-57947145f545)
 
+### 代码审计（联动项目DeepSeekSelfTool）
+![image](https://github.com/user-attachments/assets/c7dc4b66-379d-4c57-aaf2-3d4d73d1484c)
 
-### 代码分析
+
 
 ## 📈 实验数据走势图 
 有些许梯度爆炸，总体问题不大
