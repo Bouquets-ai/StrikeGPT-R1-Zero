@@ -20,10 +20,21 @@
 ## 🛠️模型部署
 ### 通过ollama进行部署
 `ollama run hf.co/Bouquets/StrikeGPT-R1-Zero-8B-Q4_K_M-GGUF:Q4_K_M`
-
 经过量化后自我认知有点问题
-
 ![image](https://github.com/user-attachments/assets/3989ea09-d581-49fb-9938-01b93e0beb91)
+## 💻开源💻
+🌟 **开源模型** 🌟  
+🤗 **HuggingFace**:  
+🔗 [https://huggingface.co/Bouquets/StrikeGPT-R1-Zero-8B](https://huggingface.co/Bouquets/StrikeGPT-R1-Zero-8B)  
+
+📊 **数据集** (部分非推理数据集) 📊  
+🤗 **HuggingFace**:  
+🔹 网络安全LLM-CVE数据集:  
+🔗 [https://huggingface.co/datasets/Bouquets/Cybersecurity-LLM-CVE](https://huggingface.co/datasets/Bouquets/Cybersecurity-LLM-CVE)  
+
+🔹 红队LLM英文数据集:  
+🔗 [https://huggingface.co/datasets/Bouquets/Cybersecurity-Red_team-LLM-en](https://huggingface.co/datasets/Bouquets/Cybersecurity-Red_team-LLM-en) 
+
 
 
 ## 🎯 核心能力展示&对比（原模型有道德限制就不做比较，简单比较SecGPT-7B模型【大佬写的评估脚本我改不来/(ㄒoㄒ)/~~】）
