@@ -20,7 +20,51 @@
 ## 🛠️模型部署
 ### 通过ollama进行部署
 `ollama run hf.co/Bouquets/StrikeGPT-R1-Zero-8B-Q4_K_M-GGUF:Q4_K_M`
-经过量化后自我认知有点问题
+**也可以直接调用原始模型**
+```
+from unsloth import FastLanguageModel
+import torch
+max_seq_length = 2048 # Choose any! We auto support RoPE Scaling internally!
+dtype = None # None for auto detection. Float16 for Tesla T4, V100, Bfloat16 for Ampere+
+load_in_4bit = True # Use 4bit quantization to reduce memory usage. Can be False.
+
+
+model, tokenizer = FastLanguageModel.from_pretrained(
+    model_name = "Bouquets/StrikeGPT-R1-Zero-8B",
+    max_seq_length = max_seq_length,
+    dtype = dtype,
+    load_in_4bit = load_in_4bit,
+    # token = "hf_...", # use one if using gated models like meta-llama/Llama-2-7b-hf
+)
+alpaca_prompt = """Below is an instruction that describes a task, paired with an input that provides further context. Write a response that appropriately completes the request.
+
+### Instruction:
+{}
+
+### Input:
+{}
+
+### Response:
+{}"""
+# alpaca_prompt = Copied from above
+FastLanguageModel.for_inference(model) # Enable native 2x faster inference
+inputs = tokenizer(
+[
+    alpaca_prompt.format(
+        "", # instruction
+        "你好，你是openai开发的吗", # input
+        "", # output - leave this blank for generation!
+    )
+], return_tensors = "pt").to("cuda")
+
+from transformers import TextStreamer
+text_streamer = TextStreamer(tokenizer, skip_prompt = True)
+_ = model.generate(input_ids = inputs.input_ids, attention_mask = inputs.attention_mask,
+                   streamer = text_streamer, max_new_tokens = 4096, pad_token_id = tokenizer.eos_token_id)
+```
+![image](https://github.com/user-attachments/assets/d8cef659-3c83-4bc9-af1a-78ed6345faf2)
+
+经过量化后自我认知有点问题,请不要在意
 ![image](https://github.com/user-attachments/assets/3989ea09-d581-49fb-9938-01b93e0beb91)
 ## 💻开源💻
 🌟 **开源模型** 🌟  
