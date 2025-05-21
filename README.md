@@ -1,5 +1,8 @@
 # 🤖 StrikeGPT-R1-Zero: 网络安全渗透领域推理模型 
 
+<img width="451" alt="image" src="https://github.com/user-attachments/assets/de75af40-3b9a-4e7b-80e4-c934175bbfb9" />
+
+
 ## 🚀 模型简介  
 **StrikeGPT-R1-Zero** 是基于 **Qwen3** 进行黑盒蒸馏的专家模型，其教师模型为 DeepSeek-R1，涵盖：  
 🔒 AI安全 | 🛡️ API安全 | 📱 APP安全 | 🕵️ APT | 🚩 CTF  
