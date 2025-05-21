@@ -1,6 +1,7 @@
 # 🤖 StrikeGPT-R1-Zero: 网络安全渗透领域推理模型 
 
-<img width="451" alt="image" src="https://github.com/user-attachments/assets/de75af40-3b9a-4e7b-80e4-c934175bbfb9" />
+![image](https://github.com/user-attachments/assets/53f54bcf-551f-41ab-af84-64c02e51e423)
+
 
 
 ## 🚀 模型简介  
